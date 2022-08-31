@@ -134,7 +134,7 @@ const setUnmuteButton = () => {
 }
 
 const playStop = () => {
-	console.log('object')
+	console.log('playStop')
 	let enabled = myVideoStream.getVideoTracks()[0].enabled
 	if (enabled) {
 		myVideoStream.getVideoTracks()[0].enabled = false
@@ -161,11 +161,39 @@ const setPlayVideo = () => {
 	`
 	document.querySelector('.mainVideoButton').innerHTML = html
 }
-//  const disconnectCall = () => {
-//     // peer.destroy();
-//     // // history("/");
-//     window.location.reload();
-// 	call.on('close', () => {
-// 		video.remove()
+ const disconnectCall = () => {
+  console.log("END IS PRESS")
+  window.open('https://coaching.mastersunion.org/meetingList?userId=24ddf443-adb7-439e-87c5-907dd828gba7&studentId=b09026d8-7e59-4aed-902a-293efd5f730d','_self');
+  };
+
+//   const shareScreen = ()=>{
+//     console.log("share screen button prees");
+// 	// captureVideo();
+//     // shareScreen()
+//   }
+
+
+
+//   let captureVideo = async function() {
+//     try {
+//         let getScreenData = await navigator.mediaDevices.getDisplayMedia({
+//             video: true,
+//             audio: true
+//         });
+//         videoElement.srcObject = getScreenData;
+//     } catch (e) {
+//         console.log(e);
+//     }
+
+// }
+
+
+// function shareScreen() {
+// 	navigator.mediaDevices.getDisplayMedia({ cursor: true }).then(stream => {
+// 		const screenTrack = stream.getTracks()[0];
+// 		senders.current.find(sender => sender.track.kind === 'video').replaceTrack(screenTrack);
+// 		screenTrack.onended = function() {
+// 			senders.current.find(sender => sender.track.kind === "video").replaceTrack(userStream.current.getTracks()[1]);
+// 		}
 // 	})
-//   };
+// }

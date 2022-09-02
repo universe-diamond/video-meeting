@@ -4,6 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
   <title>MU-meet</title>
   <link rel="stylesheet" href="css/styles.css">
@@ -29,9 +32,15 @@
 </head>
 
 <body>
-
+ 
   <div class="main">
+  
     <div class="mainLeft">
+      <div class="navbar">
+        <div class="logo">
+          <img src="https://res.cloudinary.com/dnag1wvx8/image/upload/v1662060113/main-logo_u3o5o3.png" alt="LOGO">
+        </div>
+      </div>
       <div class="mainVideos">
         <div id="videoGrid"> </div>
 
@@ -46,14 +55,14 @@
             <i class="fas fa-video"></i>
             <span>Stop Video</span>
           </div>
+          <div onclick="disconnectCall()" class=" mainControlsButton mainControlsButtonEndMeeting">
+            <span class="leaveMeeting"><i id="end" class="fas fa-phone-slash"></i></span>
+          </div>
         </div>
         <!-- <div onclick="shareScreen()"class="mainControlsButtonEndMeeting">
           <i class="fas fa-desktop"></i>
           <span>Screen-Share</span>
        </div> -->
-          <div onclick="disconnectCall()" class="mainControlsButtonEndMeeting">
-            <span class="leaveMeeting">End</span>
-          </div>
 
 
 
@@ -66,12 +75,12 @@
             <i class="fas fa-user-friends"></i>
             <span>Participants</span>
          </div> -->
-          <!-- <div class="vc-chat">
+          <div class="vc-chat">
         <div class="mainControlsButton">
           <i class="fas fa-comment-alt"></i>
           <span>Chat</span>
        </div>
-      </div> -->
+      </div>
           <!-- <div class="mainControlsButton">
           <i class="fas fa-record-vinyl"></i>         
           <span>Record</span>
@@ -83,9 +92,9 @@
         </div>
 
       </div>
-      <div class="mainRight">
+      <div id="chatbox" class="mainRight">
         <div class="mainHeader">
-          <h6>Chat</h6>
+          <h5>Chat</h5>
         </div>
         <div class="mainChatWindow">
           <ul class="messagesContainer">

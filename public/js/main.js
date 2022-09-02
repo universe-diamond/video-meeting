@@ -1,7 +1,8 @@
 const socket = io('/')
 const videoGrid = document.getElementById('videoGrid')
 const myVideo = document.createElement('video');
-
+const chatToggle = document.querySelector(".vc-chat");
+const chatbox = document.querySelector("#chatbox")
 
 myVideo.muted = true
 
@@ -25,8 +26,9 @@ navigator.mediaDevices
 		addVideoStream(myVideo, stream)
 
 		socket.on('user-connected', (userId) => {
-			connectToNewUser(userId, stream)
-			alert('Somebody connected', userId)
+			connectToNewUser(userId, stream);
+			// alert('Somebody connected', userId)
+			console.log("new user added:",userId);
 		})
 
 		peer.on('call', (call) => {
@@ -73,6 +75,9 @@ navigator.mediaDevices
 
 socket.on('user-disconnected', (userId) => {
 	if (peers[userId]) peers[userId].close()
+	console.log("user disconnected :", userId)
+	// alert("-disconnected")
+	// window.location.video ;
 })
 
 peer.on('open', (id) => {
@@ -87,6 +92,7 @@ const connectToNewUser = (userId, stream) => {
 	})
 	call.on('close', () => {
 		video.remove()
+		console.log("call close :",userId)
 	})
 
 	peers[userId] = call
@@ -165,6 +171,11 @@ const setPlayVideo = () => {
   console.log("END IS PRESS")
   window.open('https://coaching.mastersunion.org/meetingList?userId=24ddf443-adb7-439e-87c5-907dd828gba7&studentId=b09026d8-7e59-4aed-902a-293efd5f730d','_self');
   };
+
+chatToggle.addEventListener("click", () => {
+	if(chatbox.style.display === "flex") chatbox.style.display = "none";
+	else chatbox.style.display = "flex";
+})
 
 //   const shareScreen = ()=>{
 //     console.log("share screen button prees");

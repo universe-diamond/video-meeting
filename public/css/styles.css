@@ -2,17 +2,20 @@
 	margin: 0;
 	padding: 0;
 	user-select: none;
+	font-family: 'poppins', 'sans-seriff';
 }
 #videoGrid {
 	display: flex;
+	
 	justify-content: center;
 }
 
 video {
-	height: 60vh;
+	height: 70vh;
 	width: 60vh;
 	object-fit: cover;
-	margin-right: 2em;
+	border-radius: 50px;
+	margin-right: 10px;
 }
 
 .main {
@@ -21,8 +24,8 @@ video {
 }
 
 .mainLeft {
-	background: #000;
-	flex: 0.8;
+	
+	flex: 1;
 	display: flex;
 	flex-direction: column;
 }
@@ -36,9 +39,10 @@ video {
 }
 
 .mainControls {
-	padding: 16px 5px 0px 5px;
+	padding: 2px 5px 0px 5px;
 	height: 65px;
 	display: flex;
+	align-items: center;
 	background-color: #1a1a1a;
 	color: #a8a8a8;
 	justify-content: center;
@@ -46,11 +50,13 @@ video {
 }
 .vc-chat{
 	position: absolute;
-	top: 16px;
+	
 	right: 0;
 }
 .mainControlsBlock {
+	width: 300px;
 	display: flex;
+	justify-content: space-evenly;
 }
 
 .mainControlsButton {
@@ -60,8 +66,9 @@ video {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	padding: 4px 22px;
 	min-width: 80px;
+	height: max-content;
+	padding: 5px;
 	cursor: pointer;
 	font-size: 12px;
 	font-weight: 500;
@@ -69,7 +76,6 @@ video {
 
 .mainControlsButton svg {
 	font-size: 19px;
-	margin-bottom: 4px;
 }
 
 .mainControlsButton:hover {
@@ -83,14 +89,15 @@ video {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	padding: 4px 22px;
 	font-size: 12px;
+	margin-left: 10px;
 }
 
 .leaveMeeting {
 	font-weight: 600;
 	cursor: pointer;
-	padding: 4px 22px;
+	padding: 6px 22px;
+	margin-bottom: 5px;
 	background-color: #b72525;
 	color: #fff;
 	border-radius: 5px;
@@ -102,31 +109,42 @@ video {
 }
 
 .mainRight {
-	padding: 22px 18px;
-	flex: 0.2;
+	display: none;
+	
+	flex: 0.25;
 	display: flex;
 	flex-direction: column;
-	background-color: #f0f0f0;
+	background-color: #a8a8a8;
 	border-left: 1px solid #2d3d42;
+}
+#chatbox{
+	display: none;
 }
 
 .mainHeader {
 	text-align: center;
+	padding: 0.5rem 1rem;
+	border-bottom: 1px solid #2d3d42;
+}
+.chat-wrapper{
+	padding: 20px 15px;
 }
 
-.mainHeader h6 {
+.mainHeader h5 {
 	font-weight: 700;
-	color: #4a4a4a;
-	font-size: 13px;
+	color: #000;
+	margin: 0;
 }
 
 .mainChatWindow {
 	flex-grow: 1;
 	overflow-y: auto;
+	padding: 16px 15px;
 }
 
 .messagesContainer {
 	list-style: none;
+	color: #000;
 }
 
 .message {
@@ -175,14 +193,19 @@ video {
 
 .mainMessageContainer {
 	display: flex;
+	padding: 16px 15px;
 }
 
 .mainMessageContainer input {
 	flex-grow: 1;
-	background-color: transparent;
-	border: none;
-	font-size: 13px;
-	outline: 0;
+    background-color: transparent;
+    /* border: none; */
+    border: 1px solid #000;
+    padding: 10px;
+    font-size: 13px;
+    outline: 0;
+    color: #000;
+    border-radius: 10px;
 }
 
 .messagesContainer li{
@@ -190,4 +213,12 @@ video {
 	flex-direction: row-reverse;
 	justify-content: space-between;
 	align-items: center;
+}
+.navbar{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	padding: 10px 20px;
+	border-bottom: 1px solid #a8a8a8;
 }

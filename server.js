@@ -20,6 +20,8 @@ app.get('/:room', (req, res) => {
 	res.render('room', { roomId: req.params.room })
 })
 
+// user ={}; 
+
 io.on('connection', (socket) => {
 	socket.on('join-room', (roomId, userId) => {
 		socket.join(roomId)
@@ -29,7 +31,8 @@ io.on('connection', (socket) => {
 			io.to(roomId).emit('createMessage', message, userId)
 		})
 		socket.on('disconnect', () => {
-			socket.to(roomId).broadcast.emit('user-disconnected', userId)
+			socket.to(roomId).broadcast.emit('user-disconnected', userId);
+			// delete user[socket.userId];
 		})
 	})
 })
@@ -38,3 +41,4 @@ const PORT = process.env.PORT || 5000
 
 
 server.listen(PORT, () => console.log(`Listening on port ${PORT}`))
+ 

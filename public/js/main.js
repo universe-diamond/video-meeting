@@ -4,7 +4,8 @@ const myVideo = document.createElement('video');
 const chatToggle = document.querySelector(".vc-chat");
 const chatbox = document.querySelector("#chatbox")
 
-myVideo.muted = true
+myVideo.muted = true;
+const user = prompt("Enter your name");
 
 var peer = new Peer()
 
@@ -54,7 +55,8 @@ navigator.mediaDevices
 		// 								<span class="messageReceiver">Everyone:</span>
 		// 							</span>
 
-		socket.on('createMessage', (message, userId) => {
+		socket.on('createMessage', (message, userName) => {
+			// console.log(userName)
 			$('ul').append(`<li >
 								<span class="messageHeader">
 									
@@ -66,7 +68,9 @@ navigator.mediaDevices
 									})}
 								</span>
 
-								<span class="message">${message}</span>
+								<span class="message"><b><i class="fas fa-user-circle"></i> <span>
+								 ${	userName === user ? "me" : userName}</span> </b>
+								  <span>${message}</span></span>
 							
 							</li>`)
 			scrollToBottom()
@@ -81,7 +85,9 @@ socket.on('user-disconnected', (userId) => {
 })
 
 peer.on('open', (id) => {
-	socket.emit('join-room', ROOM_ID, id)
+	
+	socket.emit('join-room', ROOM_ID, id,user)
+	console.log(id,ROOM_ID)
 })
 
 const connectToNewUser = (userId, stream) => {

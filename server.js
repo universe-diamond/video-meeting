@@ -2,10 +2,13 @@ const express = require('express')
 const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
+
 const { ExpressPeerServer } = require('peer')
+
 const peerServer = ExpressPeerServer(server, {
 	debug: true,
 })
+
 const { v4: uuidv4 } = require('uuid')
 
 app.use('/peerjs', peerServer)
@@ -23,14 +26,16 @@ app.get('/:room', (req, res) => {
 // user ={}; 
 
 io.on('connection', (socket) => {
-	socket.on('join-room', (roomId, userId) => {
+	socket.on('join-room', (roomId, userId,userName) => {
+		console.log(userName)
 		socket.join(roomId)
 		socket.to(roomId).broadcast.emit('user-connected', userId)
 
 		socket.on('message', (message) => {
-			io.to(roomId).emit('createMessage', message, userId)
+			io.to(roomId).emit('createMessage', message, userName)
 		})
 		socket.on('disconnect', () => {
+			console.log("ajj")
 			socket.to(roomId).broadcast.emit('user-disconnected', userId);
 			// delete user[socket.userId];
 		})

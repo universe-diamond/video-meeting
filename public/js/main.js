@@ -54,12 +54,13 @@ navigator.mediaDevices
 		// 								to 
 		// 								<span class="messageReceiver">Everyone:</span>
 		// 							</span>
-
+		
 		socket.on('createMessage', (message, userName) => {
+			
 			// console.log(userName)
 			$('ul').append(`<li >
-								<span class="messageHeader">
-									
+			<span class="messageHeader">
+			
 
 									${new Date().toLocaleString('en-US', {
 										hour: 'numeric',
@@ -73,12 +74,20 @@ navigator.mediaDevices
 								  <span>${message}</span></span>
 							
 							</li>`)
-			scrollToBottom()
-		})
-	})
-
-socket.on('user-disconnected', (userId) => {
-	if (peers[userId]) peers[userId].close()
+							scrollToBottom()
+							if(userName != user){
+								if(chatbox.style.display === 'flex'){
+									document.querySelector(".alert24").style.display = 'none';
+								}
+								else{
+									document.querySelector(".alert24").style.display = 'block';
+								}
+							}
+						})
+					})
+					
+					socket.on('user-disconnected', (userId) => {
+						if (peers[userId]) peers[userId].close()
 	console.log("user disconnected :", userId)
 	// alert("-disconnected")
 	// window.location.video ;
@@ -179,8 +188,12 @@ const setPlayVideo = () => {
   };
 
 chatToggle.addEventListener("click", () => {
-	if(chatbox.style.display === "flex") chatbox.style.display = "none";
+	if(chatbox.style.display === "flex"){
+		chatbox.style.display = "none";
+	} 
 	else chatbox.style.display = "flex";
+
+	document.querySelector(".alert24").style.display = 'none';
 })
 
 //   const shareScreen = ()=>{

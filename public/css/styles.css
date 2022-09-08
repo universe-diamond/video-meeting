@@ -30,6 +30,17 @@ video {
 	flex-direction: column;
 }
 
+.alert24{
+	display: none;
+	background-color: red;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	position: absolute;
+	right: 30%;
+	top: 3%;
+}
+
 .mainVideos {
 	flex-grow: 1;
 	background-color: #fff;

@@ -49,34 +49,27 @@ navigator.mediaDevices
 				text.val('')
 			}
 		})
-		// <span>
-		// 								From 
-		// 								<span class="messageSender">Someone</span> 
-		// 								to 
-		// 								<span class="messageReceiver">Everyone:</span>
-		// 							</span>
+		
 
 		socket.on('createMessage', (message, userName) => {
-
-			// console.log(userName)
 			$('ul').append(`<li >
-			<span class="messageHeader">
-			
+			               <span class="messageHeader">
 
-									${new Date().toLocaleString('en-US', {
-				hour: 'numeric',
-				minute: 'numeric',
-				hour12: true,
-			})}
-								</span>
-
-								<span class="message"><b><i class="fas fa-user-circle"></i> <span>
-								 ${userName === user ? "me" : userName}</span> </b>
-							
+			             ${new Date().toLocaleString('en-US', 
+			               {
+				             hour: 'numeric',
+				             minute: 'numeric',
+				             hour12: true,
+			                })
+		                  } 
+		   				    </span>
+							 <span class="message"><b><i class="fas fa-user-circle"></i> <span>
+							   ${userName === user ? "me" : userName}</span> </b>
 							</li>`,
-				`<li id='msg'><span>${message}</span></span></li>`
-
-			)
+				          `<li id='msg'>
+						     <span>${message}</span></span>
+						   </li>`
+			                )
 
 			scrollToBottom()
 			if (userName != user) {
@@ -193,7 +186,7 @@ const setPlayVideo = () => {
 }
 const disconnectCall = () => {
 	console.log("END IS PRESS")
-	window.open('https://coaching.mastersunion.org/meetingList?userId=24ddf443-adb7-439e-87c5-907dd828gba7&studentId=b09026d8-7e59-4aed-902a-293efd5f730d', '_self');
+	window.open('https://coaching.mastersunion.org/');
 };
 
 chatToggle.addEventListener("click", () => {
@@ -211,8 +204,6 @@ chatToggle.addEventListener("click", () => {
 //     // shareScreen()
 //   }
 
-
-
 //   let captureVideo = async function() {
 //     try {
 //         let getScreenData = await navigator.mediaDevices.getDisplayMedia({
@@ -223,10 +214,7 @@ chatToggle.addEventListener("click", () => {
 //     } catch (e) {
 //         console.log(e);
 //     }
-
 // }
-
-
 // function shareScreen() {
 // 	navigator.mediaDevices.getDisplayMedia({ cursor: true }).then(stream => {
 // 		const screenTrack = stream.getTracks()[0];

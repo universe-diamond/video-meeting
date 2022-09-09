@@ -27,7 +27,7 @@ app.get('/:room', (req, res) => {
 
 io.on('connection', (socket) => {
 	socket.on('join-room', (roomId, userId,userName) => {
-		console.log(userName)
+		console.log("User-join:",userName, "/",userId)
 		socket.join(roomId)
 		socket.to(roomId).broadcast.emit('user-connected', userId)
 
@@ -35,9 +35,8 @@ io.on('connection', (socket) => {
 			io.to(roomId).emit('createMessage', message, userName)
 		})
 		socket.on('disconnect', () => {
-			console.log("ajj")
+			console.log("User-disconnected:", userId)
 			socket.to(roomId).broadcast.emit('user-disconnected', userId);
-			// delete user[socket.userId];
 		})
 	})
 })
@@ -45,5 +44,6 @@ io.on('connection', (socket) => {
 const PORT = process.env.PORT || 5000
 
 
-server.listen(PORT, () => console.log(`Listening on port ${PORT}`))
+server.listen(PORT, () => 
+console.log(`Meet_Web=> Listening on port ${PORT}`))
  

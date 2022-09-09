@@ -24,6 +24,7 @@ navigator.mediaDevices
 	})
 	.then((stream) => {
 		myVideoStream = stream
+		myVideo.setAttribute('id','myVideo')
 		addVideoStream(myVideo, stream)
 
 		socket.on('user-connected', (userId) => {
@@ -118,6 +119,11 @@ const addVideoStream = (video, stream) => {
 	video.addEventListener('loadedmetadata', () => {
 		video.play()
 	})
+	if(video.getAttribute('id') != 'myVideo'){
+		myVideo.style.height = '20vh';
+		myVideo.style.width = '10vw';
+	}
+	console.log(video)
 	videoGrid.append(video)
 }
 

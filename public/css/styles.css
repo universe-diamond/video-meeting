@@ -6,16 +6,18 @@
 }
 #videoGrid {
 	display: flex;
-	
+	flex-direction: row-reverse;
 	justify-content: center;
+	width: max-content;
+	gap: 5px;
 }
 
 video {
 	height: 70vh;
-	width: 60vh;
+	width: 100%;
 	object-fit: cover;
-	border-radius: 50px;
-	margin-right: 10px;
+	border-radius: 10px;
+	/* margin-right: 10px; */
 }
 
 .main {

@@ -24,13 +24,13 @@ navigator.mediaDevices
 	})
 	.then((stream) => {
 		myVideoStream = stream
-		myVideo.setAttribute('id','myVideo')
+		myVideo.setAttribute('id', 'myVideo')
 		addVideoStream(myVideo, stream)
 
 		socket.on('user-connected', (userId) => {
 			connectToNewUser(userId, stream);
 			// alert('Somebody connected', userId)
-			console.log("new user added:",userId);
+			console.log("new user added:", userId);
 		})
 
 		peer.on('call', (call) => {
@@ -55,49 +55,52 @@ navigator.mediaDevices
 		// 								to 
 		// 								<span class="messageReceiver">Everyone:</span>
 		// 							</span>
-		
+
 		socket.on('createMessage', (message, userName) => {
-			
+
 			// console.log(userName)
 			$('ul').append(`<li >
 			<span class="messageHeader">
 			
 
 									${new Date().toLocaleString('en-US', {
-										hour: 'numeric',
-										minute: 'numeric',
-										hour12: true,
-									})}
+				hour: 'numeric',
+				minute: 'numeric',
+				hour12: true,
+			})}
 								</span>
 
 								<span class="message"><b><i class="fas fa-user-circle"></i> <span>
-								 ${	userName === user ? "me" : userName}</span> </b>
-								  <span>${message}</span></span>
+								 ${userName === user ? "me" : userName}</span> </b>
 							
-							</li>`)
-							scrollToBottom()
-							if(userName != user){
-								if(chatbox.style.display === 'flex'){
-									document.querySelector(".alert24").style.display = 'none';
-								}
-								else{
-									document.querySelector(".alert24").style.display = 'block';
-								}
-							}
-						})
-					})
-					
-					socket.on('user-disconnected', (userId) => {
-						if (peers[userId]) peers[userId].close()
+							</li>`,
+				`<li id='msg'><span>${message}</span></span></li>`
+
+			)
+
+			scrollToBottom()
+			if (userName != user) {
+				if (chatbox.style.display === 'flex') {
+					document.querySelector(".alert24").style.display = 'none';
+				}
+				else {
+					document.querySelector(".alert24").style.display = 'block';
+				}
+			}
+		})
+	})
+
+socket.on('user-disconnected', (userId) => {
+	if (peers[userId]) peers[userId].close()
 	console.log("user disconnected :", userId)
 	// alert("-disconnected")
 	// window.location.video ;
 })
 
 peer.on('open', (id) => {
-	
-	socket.emit('join-room', ROOM_ID, id,user)
-	console.log(id,ROOM_ID)
+
+	socket.emit('join-room', ROOM_ID, id, user)
+	console.log(id, ROOM_ID)
 })
 
 const connectToNewUser = (userId, stream) => {
@@ -108,7 +111,7 @@ const connectToNewUser = (userId, stream) => {
 	})
 	call.on('close', () => {
 		video.remove()
-		console.log("call close :",userId)
+		console.log("call close :", userId)
 	})
 
 	peers[userId] = call
@@ -119,7 +122,7 @@ const addVideoStream = (video, stream) => {
 	video.addEventListener('loadedmetadata', () => {
 		video.play()
 	})
-	if(video.getAttribute('id') != 'myVideo'){
+	if (video.getAttribute('id') != 'myVideo') {
 		myVideo.style.height = '20vh';
 		myVideo.style.width = '10vw';
 	}
@@ -150,7 +153,7 @@ const setMuteButton = () => {
 	`
 	document.querySelector('.mainMuteButton').innerHTML = html
 }
-	//   <i class="unmute fas fa-microphone-slash"></i>
+//   <i class="unmute fas fa-microphone-slash"></i>
 
 const setUnmuteButton = () => {
 	const html = `
@@ -171,7 +174,7 @@ const playStop = () => {
 		myVideoStream.getVideoTracks()[0].enabled = true
 	}
 }
-{/* <i class="fas fa-video"></i> */}
+{/* <i class="fas fa-video"></i> */ }
 const setStopVideo = () => {
 	const html = `
 	<i class="fas fa-video"></i>
@@ -180,7 +183,7 @@ const setStopVideo = () => {
 	document.querySelector('.mainVideoButton').innerHTML = html
 }
 
-{/* <i class="stop fas fa-video-slash"></i> */}
+{/* <i class="stop fas fa-video-slash"></i> */ }
 const setPlayVideo = () => {
 	const html = `
 	<i class="stop fas fa-video-slash"></i>
@@ -188,15 +191,15 @@ const setPlayVideo = () => {
 	`
 	document.querySelector('.mainVideoButton').innerHTML = html
 }
- const disconnectCall = () => {
-  console.log("END IS PRESS")
-  window.open('https://coaching.mastersunion.org/meetingList?userId=24ddf443-adb7-439e-87c5-907dd828gba7&studentId=b09026d8-7e59-4aed-902a-293efd5f730d','_self');
-  };
+const disconnectCall = () => {
+	console.log("END IS PRESS")
+	window.open('https://coaching.mastersunion.org/meetingList?userId=24ddf443-adb7-439e-87c5-907dd828gba7&studentId=b09026d8-7e59-4aed-902a-293efd5f730d', '_self');
+};
 
 chatToggle.addEventListener("click", () => {
-	if(chatbox.style.display === "flex"){
+	if (chatbox.style.display === "flex") {
 		chatbox.style.display = "none";
-	} 
+	}
 	else chatbox.style.display = "flex";
 
 	document.querySelector(".alert24").style.display = 'none';

@@ -14,7 +14,7 @@
 
 video {
 	height: 70vh;
-	width: 100%;
+	width: 60vw;
 	object-fit: cover;
 	border-radius: 10px;
 	/* margin-right: 10px; */
@@ -133,7 +133,15 @@ video {
 #chatbox{
 	display: none;
 }
-
+#msg span{
+	text-align: left;
+	width: 100%;
+	font-size: 12px;
+    display: block;
+   	padding-left: 15px;
+	padding-top: 2px;
+    
+}
 .mainHeader {
 	text-align: center;
 	padding: 0.5rem 1rem;
@@ -163,7 +171,7 @@ video {
 .message {
 	font-size: 13px;
 	display: block;
-	padding: 10px;
+	padding: 10px 0px 4px 0px;
 	
 	/* margin-top: 20px; */
 }

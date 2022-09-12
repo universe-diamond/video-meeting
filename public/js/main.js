@@ -16,7 +16,8 @@ const myPeer = new Peer(undefined, {
 })
 
 const peers = {}
-let myVideoStream
+let myVideoStream;
+
 navigator.mediaDevices
 	.getUserMedia({
 		video: true,

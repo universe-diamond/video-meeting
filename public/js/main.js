@@ -65,7 +65,7 @@ navigator.mediaDevices
 		                  } 
 		   				    </span>
 							 <span class="message"><b><i class="fas fa-user-circle"></i> <span>
-							   ${userName === user ? "me" : userName}</span> </b>
+							   ${userName === user ? "Me" : userName}</span> </b>
 							</li>`,
 				          `<li id='msg'>
 						     <span>${message}</span></span>
@@ -119,6 +119,7 @@ const addVideoStream = (video, stream) => {
 	if (video.getAttribute('id') != 'myVideo') {
 		myVideo.style.height = '20vh';
 		myVideo.style.width = '10vw';
+		setInterval(interval,1000);
 	}
 	console.log(video)
 	videoGrid.append(video)
@@ -187,8 +188,16 @@ const setPlayVideo = () => {
 }
 const disconnectCall = () => {
 	console.log("END IS PRESS")
-	window.open('https://coaching.mastersunion.org/');
+	location.href = 'https://coaching.mastersunion.org/';
 };
+
+const interval = () => {
+	if(document.querySelector("#videoGrid").childNodes.length < 3){
+		myVideo.style.height = '70vh';
+		myVideo.style.width = '60vh';
+		clearInterval(interval)
+	}
+  }
 
 chatToggle.addEventListener("click", () => {
 	if (chatbox.style.display === "flex") {
